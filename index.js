@@ -11,7 +11,7 @@ const init = () => {
 
     let imgData = ctx.getImageData(0, 0, cLabyrinth.width, cLabyrinth.height);
     console.log(imgData);
-    
+
 
     workerLabyrinth.postMessage({
         befehl: 'drawBoxes',
@@ -20,8 +20,14 @@ const init = () => {
 
     workerLabyrinth.onmessage = msg => {
         let data = msg.data;
-        // console.log (data);
-        ctx.putImageData(data.imgData, 0, 0);
+        if (data.status = 'done') {
+            // console.log (data);
+            ctx.putImageData(data.imgData, 0, 0);
+        } else if ( data.status = 'pending'){
+            //console.log(data.step, data.progress);
+            
+        }
+
     }
 
 }
